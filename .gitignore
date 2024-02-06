@@ -279,3 +279,4 @@ billing_sys/media/
 .env
 .envs/*
 !.envs/.local/
+.idea/
