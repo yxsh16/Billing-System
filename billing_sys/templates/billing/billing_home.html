@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 {% block content %}
     <h1>Billing Dashboard</h1>
+
+    <p>{% trans "Add a credit card here:" %}</p>
+    <a href="{% url 'billing:checkout' %}" class="btn-primary btn">{% trans "Add a credit card" %}</a>
 {% endblock %}
