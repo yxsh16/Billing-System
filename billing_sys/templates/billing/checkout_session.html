@@ -2,7 +2,7 @@
 
 {% block content %}
     <form action="{% url 'billing:checkout' %}" method="POST">
-        {% crf_token %}
+        {% csrf_token %}
         <button type="submit">Checkout</button>
     </form>
 {% endblock %}

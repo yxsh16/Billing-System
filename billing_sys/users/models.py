@@ -19,7 +19,9 @@ class User(AbstractUser):
     last_name = None  # type: ignore
     email = EmailField(_("email address"), unique=True)
     username = None  # type: ignore
-
+    
+    stripe_customer_id = CharField(max_length=255, blank=True, null = True)
+    
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
 
