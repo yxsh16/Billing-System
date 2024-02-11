@@ -3,7 +3,10 @@
 
 {% block content %}
     <h1>Billing Dashboard</h1>
-
-    <p>{% trans "Add a credit card here:" %}</p>
-    <a href="{% url 'billing:checkout' %}" class="btn-primary btn">{% trans "Add a credit card" %}</a>
+    {% if request.user.stripe.customer_id %}
+        <p>{% trans "You're all set" %}</p>
+    {% else %}
+        <p>{% trans "Add a credit card here:" %}</p>
+        <a href="{% url 'billing:checkout' %}" class="btn-primary btn">{% trans "Add a credit card" %}</a>
+    {% endif %}    
 {% endblock %}
