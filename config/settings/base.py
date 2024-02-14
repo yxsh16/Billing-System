@@ -82,7 +82,8 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     "billing_sys.users",
-    "billing_sys.billing"
+    "billing_sys.billing",
+    "billing_sys.plowing",
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -323,4 +324,4 @@ SOCIALACCOUNT_FORMS = {"signup": "billing_sys.users.forms.UserSocialSignupForm"}
 
 # Your stuff...
 # ------------------------------------------------------------------------------
-STRIPE_SECRET_KEY=env("STRIPE_API_KEY")
+STRIPE_SECRET_KEY=env("STRIPE_API_KEY", default = "")
