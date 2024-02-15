@@ -40,9 +40,9 @@ def checkout_session(request: HttpRequest):
 
 @login_required
 def checkout_success(request: HttpRequest):
-    session_id = request.GET.get('session_id')
-    stripe.api_key = settings.SECRET_KEY
+    session_id = request.GET['session_id']
+    stripe.api_key = settings.STRIPE_SECRET_KEY
     session = stripe.checkout.Session.retrieve(session_id)
     print(session)
-    
-    return render(request, template_name='billing/checkout_success.html')
+
+    return render(request, 'billing/checkout_success.html')

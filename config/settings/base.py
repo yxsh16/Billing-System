@@ -324,4 +324,4 @@ SOCIALACCOUNT_FORMS = {"signup": "billing_sys.users.forms.UserSocialSignupForm"}
 
 # Your stuff...
 # ------------------------------------------------------------------------------
-STRIPE_SECRET_KEY=env("STRIPE_API_KEY", default = "")
+STRIPE_SECRET_KEY=env("STRIPE_API_KEY")

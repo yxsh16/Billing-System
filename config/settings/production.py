@@ -187,7 +187,7 @@ integrations = [
     RedisIntegration(),
 ]
 sentry_sdk.init(
-    dsn=SENTRY_DSN,
+    dsn=https://59634cc46ac85c079e122bb40086a817@o4506705854922752.ingest.sentry.io/4506705858985984,
     integrations=integrations,
     environment=env("SENTRY_ENVIRONMENT", default="production"),
     traces_sample_rate=env.float("SENTRY_TRACES_SAMPLE_RATE", default=0.0),
