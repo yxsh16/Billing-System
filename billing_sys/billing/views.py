@@ -46,3 +46,5 @@ def checkout_success(request: HttpRequest):
     print(session)
 
     return render(request, 'billing/checkout_success.html')
+
+
