@@ -14,8 +14,7 @@ from .base import env
 # https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
 SECRET_KEY = env("DJANGO_SECRET_KEY")
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = env("DJANGO_ALLOWED_HOSTS", default="ec2-54-89-241-164.compute-1.amazonaws.com")
-
+ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=["ec2-54-89-241-164.compute-1.amazonaws.com"])
 
 # DATABASES
 # ------------------------------------------------------------------------------
