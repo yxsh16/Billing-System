@@ -31,23 +31,21 @@ certificatesResolvers:
 http:
   routers:
     web-secure-router:
-      rule: 'Host(`example.com`) || Host(`www.example.com`)'
+      rule: 'Host(`ec2-54-89-241-164.compute-1.amazonaws.com`) || Host(`www.ec2-54-89-241-164.compute-1.amazonaws.com`)'
       entryPoints:
         - web-secure
       middlewares:
         - csrf
       service: django
       tls:
-        # https://doc.traefik.io/traefik/routing/routers/#certresolver
         certResolver: letsencrypt
 
     flower-secure-router:
-      rule: 'Host(`example.com`)'
+      rule: 'Host(`ec2-54-89-241-164.compute-1.amazonaws.com`)'
       entryPoints:
         - flower
       service: flower
       tls:
-        # https://doc.traefik.io/traefik/master/routing/routers/#certresolver
         certResolver: letsencrypt
 
   middlewares:
