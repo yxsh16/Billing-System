@@ -31,7 +31,7 @@ certificatesResolvers:
 http:
   routers:
     web-secure-router:
-      rule: 'Host(`hideously-hopeful-coral.ngrok-free.app`)'
+      rule: 'Host(`44.211.221.198`)'
       entryPoints:
         - web-secure
       middlewares:
@@ -41,7 +41,7 @@ http:
         certResolver: letsencrypt
 
     flower-secure-router:
-      rule: 'Host(`hideously-hopeful-coral.ngrok-free.app`)'
+      rule: 'Host(`44.211.221.198`)'
       entryPoints:
         - flower
       service: flower
