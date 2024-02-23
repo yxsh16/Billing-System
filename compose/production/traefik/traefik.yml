@@ -31,7 +31,7 @@ certificatesResolvers:
 http:
   routers:
     web-secure-router:
-      rule: 'Host(`ec2-54-89-241-164.compute-1.amazonaws.com`) || Host(`www.ec2-54-89-241-164.compute-1.amazonaws.com`)'
+      rule: 'Host(`hideously-hopeful-coral.ngrok-free.app`)'
       entryPoints:
         - web-secure
       middlewares:
@@ -41,7 +41,7 @@ http:
         certResolver: letsencrypt
 
     flower-secure-router:
-      rule: 'Host(`ec2-54-89-241-164.compute-1.amazonaws.com`)'
+      rule: 'Host(`hideously-hopeful-coral.ngrok-free.app`)'
       entryPoints:
         - flower
       service: flower
