@@ -1,4 +1,4 @@
-# billing_system
+# Service-exchange and billing platform.
 
 A saas product for billing and payments.
 
