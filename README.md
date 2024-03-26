@@ -1,97 +1,80 @@
-# Service-exchange and billing platform.
-
-A saas product for billing and payments.
+# Service-Exchange and Billing Platform
 
 [![Built with Cookiecutter Django](https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg?logo=cookiecutter)](https://github.com/cookiecutter/cookiecutter-django/)
 [![Black code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 
-License: MIT
+A SaaS product for P2P service exchange and billing using Stripe payments.
 
-## Settings
+## 🔧 Tech Stack Used:
 
-Moved to [settings](http://cookiecutter-django.readthedocs.io/en/latest/settings.html).
+- ![Django](https://img.shields.io/badge/django-%23092E20.svg?style=for-the-badge&logo=django&logoColor=white)
+- ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
+- ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
+- ![Ubuntu](https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)
+- ![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
+- ![Gunicorn](https://img.shields.io/badge/gunicorn-%298729.svg?style=for-the-badge&logo=gunicorn&logoColor=white)
+- ![Celery](https://img.shields.io/badge/celery-%23a9cc54.svg?style=for-the-badge&logo=celery&logoColor=ddf4a4)
+- ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
 
-## Basic Commands
+## Setup
 
-### Setting Up Your Users
+This project is built using [Cookiecutter Django](https://github.com/cookiecutter/cookiecutter-django).
 
-- To create a **normal user account**, just go to Sign Up and fill out the form. Once you submit it, you'll see a "Verify Your E-mail Address" page. Go to your console to see a simulated email verification message. Copy the link into your browser. Now the user's email should be verified and ready to go.
+Run:
 
-- To create a **superuser account**, use this command:
-
-      $ python manage.py createsuperuser
-
-For convenience, you can keep your normal user logged in on Chrome and your superuser logged in on Firefox (or similar), so that you can see how the site behaves for both kinds of users.
-
-### Type checks
-
-Running type checks with mypy:
-
-    $ mypy billing_sys
-
-### Test coverage
-
-To run the tests, check your test coverage, and generate an HTML coverage report:
-
-    $ coverage run -m pytest
-    $ coverage html
-    $ open htmlcov/index.html
-
-#### Running tests with pytest
-
-    $ pytest
-
-### Live reloading and Sass CSS compilation
-
-Moved to [Live reloading and SASS compilation](https://cookiecutter-django.readthedocs.io/en/latest/developing-locally.html#sass-compilation-live-reloading).
-
-### Celery
-
-This app comes with Celery.
-
-To run a celery worker:
-
-```bash
-cd billing_sys
-celery -A config.celery_app worker -l info
+```
+docker compose up
 ```
 
-Please note: For Celery's import magic to work, it is important _where_ the celery commands are run. If you are in the same folder with _manage.py_, you should be right.
 
-To run [periodic tasks](https://docs.celeryq.dev/en/stable/userguide/periodic-tasks.html), you'll need to start the celery beat scheduler service. You can start it as a standalone process:
-
-```bash
-cd billing_sys
-celery -A config.celery_app beat
-```
-
-or you can embed the beat service inside a worker with the `-B` option (not recommended for production use):
-
-```bash
-cd billing_sys
-celery -A config.celery_app worker -B -l info
-```
-
-### Email Server
-
-In development, it is often nice to be able to see emails that are being sent from your application. For that reason local SMTP server [Mailpit](https://github.com/axllent/mailpit) with a web interface is available as docker container.
-
-Container mailpit will start automatically when you will run all docker containers.
-Please check [cookiecutter-django Docker documentation](http://cookiecutter-django.readthedocs.io/en/latest/deployment-with-docker.html) for more details how to start all containers.
-
-With Mailpit running, to view messages that are sent by your application, open your browser and go to `http://127.0.0.1:8025`
-
-### Sentry
-
-Sentry is an error logging aggregator service. You can sign up for a free account at <https://sentry.io/signup/?code=cookiecutter> or download and host it yourself.
-The system is set up with reasonable defaults, including 404 logging and integration with the WSGI application.
-
-You must set the DSN url in production.
+Your application will start on `localhost:8000`.
 
 ## Deployment
 
-The following details how to deploy this application.
+### Requirements:
 
-### Docker
+- AWS account
+- AWS instance with minimum 2 GiB memory
+- A custom domain name
 
-See detailed [cookiecutter-django Docker documentation](http://cookiecutter-django.readthedocs.io/en/latest/deployment-with-docker.html).
+### Steps:
+
+1. Launch the instance
+2. Configure the hosted zones from Route 53
+3. Configure the inbound rules (port 8000)
+
+### Installing Dependencies:
+
+1. Login to the server as the root user
+2. Follow the instructions step by step from [here](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04)
+3. Run:
+```
+sudo apt install docker-ce docker-compose git
+```
+4. Add your deploy keys from GitHub to the server
+5. Follow the instructions from [GitHub](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+6. Clone the GitHub repository to the server using SSH
+7. Create a new directory named `.production`
+8. Run:
+```
+vim /root/Billing-System/.envs/.production/.django
+```
+   From your local codebase, copy all the content of the file `/.envs/.production/.django` and paste it in the newly created file using vim.
+   
+9.  Run:
+```
+vim /root/Billing-System/.envs/.production/.postgres
+```
+   From your local codebase, copy all the content of the file `/.envs/.production/.postgres` and paste it in the newly created file using vim.
+    
+
+10. Run:
+```
+cd /root/Billing-System && docker-compose -f production.yml down && git pull && docker-compose -f production.yml build && docker-compose -f production.yml run --rm django python manage.py migrate && docker-compose -f production.yml up -d
+```
+
+
+You can now visit your application on the configured domain name.
+
+If the response on the terminal looks like the provided screenshot, then the resources provisioned to the instance are not enough, and you will need to upgrade the memory size to at least 2 GiB (works fine).
+
