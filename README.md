@@ -7,6 +7,7 @@ A SaaS product for P2P service exchange and billing using Stripe payments.
 
 ## 🔧 Tech Stack Used:
 
+- ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 - ![Django](https://img.shields.io/badge/django-%23092E20.svg?style=for-the-badge&logo=django&logoColor=white)
 - ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
 - ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
@@ -73,8 +74,14 @@ vim /root/Billing-System/.envs/.production/.postgres
 cd /root/Billing-System && docker-compose -f production.yml down && git pull && docker-compose -f production.yml build && docker-compose -f production.yml run --rm django python manage.py migrate && docker-compose -f production.yml up -d
 ```
 
+The response should like:
+![Screenshot 2024-03-26 134547](https://github.com/yxsh16/Billing-System/assets/108002164/b4706234-57ba-472a-9588-643dd0e6767e)
 
 You can now visit your application on the configured domain name.
 
-If the response on the terminal looks like the provided screenshot, then the resources provisioned to the instance are not enough, and you will need to upgrade the memory size to at least 2 GiB (works fine).
+If the response on the terminal looks like 
+the![Screenshot 2024-03-26 134026](https://github.com/yxsh16/Billing-System/assets/108002164/c561fd57-446a-4ea4-bc82-8cf052b77786)
+n the resources provisioned to the instance are not enough, and you will need to upgrade the memory size to at least 2 GiB (works fine).
+
+
 
